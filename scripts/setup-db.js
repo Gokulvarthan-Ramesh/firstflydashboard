@@ -20,6 +20,20 @@ async function run() {
   const client = await pool.connect();
 
   try {
+    // Check if database is already initialized
+    const checkTable = await client.query(`
+      SELECT EXISTS (
+        SELECT FROM information_schema.tables 
+        WHERE table_schema = 'public' 
+        AND table_name = 'users'
+      );
+    `);
+
+    if (checkTable.rows[0].exists) {
+      console.log('📦  Database already initialized. Skipping schema creation.');
+      return;
+    }
+
     // 1. Run schema
     console.log('📦  Running schema.sql …');
     const schema = fs.readFileSync(path.join(__dirname, '..', 'db', 'schema.sql'), 'utf8');

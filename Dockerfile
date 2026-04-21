@@ -19,5 +19,5 @@ EXPOSE 5000
 # Set environment to production
 ENV NODE_ENV=production
 
-# Start the application
-CMD ["npm", "start"]
+# Start the application (running setup-db first to ensure tables exist)
+CMD ["sh", "-c", "npm run setup-db && npm start"]
