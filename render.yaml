@@ -1,0 +1,55 @@
+services:
+  - type: web
+    name: firstfly-backend
+    runtime: node
+    rootDir: .
+    plan: free
+    region: singapore
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 8h
+      - key: FRONTEND_URL
+        value: https://your-frontend-url.com # Update this with your actual frontend URL
+      - key: DB_HOST
+        fromDatabase:
+          name: firstfly-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: firstfly-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: firstfly-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: firstfly-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: firstfly-db
+          property: password
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: SMTP_FROM
+        value: "First Fly Digital Solutions <info@firstfly.in>"
+
+databases:
+  - name: firstfly-db
+    plan: free
+    region: singapore
