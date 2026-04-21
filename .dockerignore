@@ -1,0 +1,12 @@
+node_modules
+.git
+.env
+.env.example
+docker-compose.yml
+Dockerfile
+.dockerignore
+First_Fly_API_Collection.json
+First_Fly_Postman_Environment.json
+render.yaml
+npm-debug.log
+README.md
