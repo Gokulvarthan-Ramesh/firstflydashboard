@@ -5,7 +5,7 @@ services:
     rootDir: .
     plan: free
     region: singapore
-    buildCommand: npm install
+    buildCommand: npm ci
     startCommand: npm run setup-db && npm start
     envVars:
       - key: PORT
