@@ -1,8 +1,12 @@
 services:
   - type: web
     name: firstfly-backend
-    runtime: docker
+    runtime: node
     rootDir: .
+    plan: free
+    region: singapore
+    buildCommand: npm install
+    startCommand: npm run setup-db && npm start
     envVars:
       - key: PORT
         value: 5000
