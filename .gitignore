@@ -1,0 +1,4 @@
+node_modules/
+.env
+*.log
+First_Fly_API_Collection.json
